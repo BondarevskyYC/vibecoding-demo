@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tasks</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="tasks.css" />
+</head>
+<body>
+  <div class="container tasks-container">
+    <h1>Tasks</h1>
+
+    <div class="toolbar">
+      <span class="task-count" id="task-count"></span>
+      <button class="btn-reset" id="btn-refresh">Refresh</button>
+    </div>
+
+    <!-- Loading state -->
+    <div class="state-box" id="state-loading">
+      <span class="muted">Loading…</span>
+    </div>
+
+    <!-- Error state -->
+    <div class="state-box" id="state-error" hidden>
+      <span class="error-msg" id="error-msg"></span>
+    </div>
+
+    <!-- Table state -->
+    <div id="state-table" hidden>
+      <table class="tasks-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody id="tasks-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="tasks.js"></script>
+</body>
+</html>
