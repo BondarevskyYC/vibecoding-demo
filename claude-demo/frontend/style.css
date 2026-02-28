@@ -1,0 +1,174 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f172a;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #f1f5f9;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #f8fafc;
+}
+
+/* Scoreboard */
+.scoreboard {
+  display: flex;
+  gap: 12px;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 14px 28px;
+  min-width: 90px;
+  transition: box-shadow 0.2s;
+}
+
+.score.active-x {
+  box-shadow: 0 0 0 2px #38bdf8;
+}
+
+.score.active-o {
+  box-shadow: 0 0 0 2px #f472b6;
+}
+
+.score-label {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+}
+
+.score-label.x { color: #38bdf8; }
+.score-label.o { color: #f472b6; }
+
+.score-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* Status */
+.status {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #94a3b8;
+  height: 1.5em;
+  transition: color 0.2s;
+}
+
+.status.win  { color: #4ade80; font-weight: 700; }
+.status.draw { color: #fbbf24; font-weight: 700; }
+
+/* Board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 110px);
+  grid-template-rows: repeat(3, 110px);
+  gap: 10px;
+}
+
+.cell {
+  background: #1e293b;
+  border: 2px solid #334155;
+  border-radius: 16px;
+  font-size: 3rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: transparent;
+  transition: background 0.15s, transform 0.1s, border-color 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+
+.cell:hover:not(:disabled) {
+  background: #263347;
+  border-color: #475569;
+  transform: scale(1.04);
+}
+
+.cell.x {
+  color: #38bdf8;
+  border-color: #0369a1;
+  background: #0c2840;
+  cursor: default;
+}
+
+.cell.o {
+  color: #f472b6;
+  border-color: #9d174d;
+  background: #2d0a1e;
+  cursor: default;
+}
+
+.cell.winning {
+  animation: pulse 0.6s ease-in-out infinite alternate;
+}
+
+.cell.x.winning { border-color: #38bdf8; background: #103650; }
+.cell.o.winning { border-color: #f472b6; background: #3d0f28; }
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+/* Pop-in animation when a cell is claimed */
+.cell.x, .cell.o {
+  animation: pop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+.cell.winning {
+  animation: pulse 0.6s ease-in-out infinite alternate;
+}
+
+/* Reset button */
+.btn-reset {
+  padding: 12px 36px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  background: #334155;
+  color: #f1f5f9;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-reset:hover {
+  background: #475569;
+  transform: translateY(-1px);
+}
+
+.btn-reset:active {
+  transform: translateY(0);
+}
